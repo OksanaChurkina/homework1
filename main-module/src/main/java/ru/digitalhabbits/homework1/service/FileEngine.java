@@ -2,6 +2,11 @@ package ru.digitalhabbits.homework1.service;
 
 import javax.annotation.Nonnull;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Formatter;
+import java.util.Objects;
 
 import static java.util.Arrays.stream;
 
@@ -11,7 +16,15 @@ public class FileEngine {
     private static final String RESULT_EXT = "txt";
 
     public boolean writeToFile(@Nonnull String text, @Nonnull String pluginName) {
-        // TODO: NotImplemented
+        Formatter formatter = new Formatter();
+        try (FileWriter fileWriter =
+                     new FileWriter(formatter.format(RESULT_DIR + "/" + RESULT_FILE_PATTERN, pluginName).toString(), false)){
+            fileWriter.write(text);
+            fileWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
         return true;
     }
 

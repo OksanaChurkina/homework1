@@ -2,6 +2,7 @@ package ru.digitalhabbits.homework1.plugin;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Arrays;
 
 public class CounterPlugin
         implements PluginInterface {
@@ -10,10 +11,14 @@ public class CounterPlugin
     @Override
     public String apply(@Nonnull String text) {
 
-        int lineCount = text.split("\n").length; // count of lines
-        String[] wordsCount = text.replaceAll("[\\W \\n]", " ").split("\\s+"); //count of words
-        long lettersCount = text.toCharArray().length; // count of letters
-
-        return lineCount + ";" + wordsCount + ";" + lettersCount;
+        int linesCount = text.split("\n").length;
+        int lettersCount = text.length();
+        int wordsCount = 0;
+        for(String s: text.split("\\W")){
+            if (s.length()>0){
+                wordsCount++;
+            }
+        }
+        return linesCount + ";" + wordsCount + ";" + lettersCount + ";";
     }
 }

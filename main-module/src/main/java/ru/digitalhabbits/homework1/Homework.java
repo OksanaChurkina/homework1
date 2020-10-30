@@ -1,10 +1,12 @@
 package ru.digitalhabbits.homework1;
 
 import javax.annotation.Nonnull;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 
 public class Homework {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchMethodException, InstantiationException, IllegalAccessException, IOException, InvocationTargetException {
         new WikipediaSearchEngine().search(getSearchString(args));
     }
 
